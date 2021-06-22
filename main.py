@@ -37,11 +37,11 @@ async def start(bot, update):
     )
 @bughunter0.on_message(filters.private & filters.command(["stickerid"]))
 def stickerid(bot, update):
-    msg = update.effective_message
+    msg = message.message_id
     if msg.reply_to_message and msg.reply_to_message.sticker:
-        update.effective_message.reply_text("Sticker ID:\n```" +
-                                            escape_markdown(msg.reply_to_message.sticker.file_id) + "```",
-                                            parse_mode=ParseMode.MARKDOWN)
+        update.reply_text(
+                           "Sticker ID: " sticker.file_unique_id 
+                                            
     else:
         update.effective_message.reply_text("Please reply to a sticker to get its ID.")
 
