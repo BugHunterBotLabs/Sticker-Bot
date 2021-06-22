@@ -1,1 +1,1 @@
-worker: python -m PyroBot
+worker: python3 main.py
