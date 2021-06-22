@@ -1,1 +1,1 @@
-worker: python -m PyroBot
+bughunter0: python -m PyroBot
