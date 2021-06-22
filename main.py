@@ -14,6 +14,16 @@ bughunter0 = Client(
     api_hash = os.environ["API_HASH"]
 )
 
+START_STRING = """ Hi {}, I'm Sticker Bot. 
+
+I can Provide all Kind of Sticker Options Here """
+
+
+JOIN_BUTTON = InlineKeyboardMarkup(
+        [[
+        InlineKeyboardButton('↗ Join Here ↗', url='https://t.me/BughunterBots')
+        ]]
+    )
 
 
 
