@@ -1,6 +1,7 @@
 import os
 import logging
 import pyrogram
+import time
 from decouple import config
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
@@ -35,6 +36,16 @@ async def start(bot, update):
         reply_markup=reply_markup,
         quote=True
     )
+
+@bughunter0.on_message(filters.command(["ping"]))
+async def ping(bot, message):
+    start_t = time.time()
+    rm = await message.reply_text("...")
+    end_t = time.time()
+    time_taken_s = (end_t - start_t) * 1000
+    await rm.edit(f"Pong!\n{time_taken_s:.3f} ms")
+
+
 @bughunter0.on_message(filters.private & filters.command(["stickerid"]))
 def stickerid(bot, update):
     msg = message.message_id
