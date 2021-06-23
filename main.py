@@ -47,7 +47,7 @@ async def ping(bot, message):
 
 
 @bughunter0.on_message(filters.sticker & filters.command(["stickerid"]))
-def stickerid(bot, update):    
+async def stickerid(bot, update):    
     id = await message.reply_text("Getting Sticker ID")   
     await id.edit(f"{message.sticker.file_id}")                                   
     
