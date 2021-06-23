@@ -39,11 +39,11 @@ async def start(bot, update):
 def stickerid(bot, update):
     msg = message.message_id
     if msg.reply_to_message and msg.reply_to_message.sticker:
-        update.reply_text(
-                           "Sticker ID: " sticker.file_unique_id 
+        update.reply_text("Sticker ID: ")  
+
                                             
     else:
-        update.effective_message.reply_text("Please reply to a sticker to get its ID.")
+        update.reply_text("Please reply to a sticker to get its ID.")
 
 
 bughunter0.run()
