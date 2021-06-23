@@ -47,11 +47,10 @@ async def ping(bot, message):
 
 
 @bughunter0.on_message(filters.private & filters.command(["stickerid"]))
-def stickerid(bot, update):
-    msg = message.message_id
-    if msg.reply_to_message and msg.reply_to_message.sticker:
-        update.reply_text("Sticker ID: ")  
-
+def stickerid(bot, update):    
+    reply_to_id = message.message_id
+    if message.reply_to_message:
+        reply_to_id = message.reply_to_message.message_id
                                             
     else:
         update.reply_text("Please reply to a sticker to get its ID.")
