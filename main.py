@@ -46,7 +46,7 @@ async def ping(bot, message):
     await rm.edit(f"Pong!\n{time_taken_s:.3f} ms")
 
 
-@bughunter0.on_message(filters.command(["stickerid"]))
+@bughunter0.on_message(filters.private & ~filters.forwarded & ~filters.command(["stickerid"]))
 async def stickerid(bot, message):   
     if message.sticker :
        await message.reply(f"Sticker ID is `{message.sticker.file_id}` \n Unique ID is `{message.sticker.file_unique_id}`")
