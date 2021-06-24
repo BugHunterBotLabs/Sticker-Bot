@@ -50,8 +50,8 @@ async def ping(bot, message):
 async def stickerid(bot, message):   
     chat_id=message.chat.id    
     reply_to_message_id=message.message_id
-    message.sticker.file_unique_id(str)  # if message.sticker
-    message.reply_text("Sticker ID is")                               
+    strid = sticker.file_unique_id()  # if message.sticker
+    message.reply_text("Sticker ID is{strid}")                               
     
 
 bughunter0.run()
