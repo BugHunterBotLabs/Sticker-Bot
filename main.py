@@ -56,12 +56,12 @@ async def getsticker(bot, message):
    message.reply("Testing functions")
    if message.sticker:
         fileid = message.sticker.file_id
-        newfile = bot.download_media(fileid)
-        message.reply("Testing Purposes")
-        newfile.download_media("sticker.png")
-        bot.send_document(chat_id, document=open('sticker.png', 'rb'))
-        os.remove("sticker.png")
-        message.reply("Testing Purposes")
+        await bot.download_media(message=update,file_name="sticker.png",file_id=fileid)
+        response = upload_file("sticker.png")
+        try:
+            os.remove(sticker.png)
+        except:
+            pass        
    else :
         message.reply("Not a Valid Sticker")
 
