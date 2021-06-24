@@ -46,9 +46,18 @@ async def ping(bot, message):
     await rm.edit(f"Pong!\n{time_taken_s:.3f} ms")
 
 
-@bughunter0.on_message(filters.private & ~filters.forwarded)
+@bughunter0.on_message(filters.private | filters.forwarded)
 async def stickerid(bot, message):   
-    if message.sticker :
+    if message.sticker:
        await message.reply(f"**Sticker ID is**  \n `{message.sticker.file_id}` \n \n ** Unique ID is ** \n\n`{message.sticker.file_unique_id}`", quote=True)
+
+@bughunter0.on_message(filters.private & filters.command(["getsticker"]))
+async def getsticker(bot, message, update, chat):
+     if message.sticker:
+        fileid = message.sticker.file_id
+        newfile = bot.download_media(fileid)
+        newfile.download_media("sticker.png")
+        bot.send_document(chat_id, document=open('sticker.png', 'rb'))
+        os.remove("sticker.png")
 
 bughunter0.run()
