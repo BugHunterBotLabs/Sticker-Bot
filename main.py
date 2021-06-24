@@ -49,6 +49,6 @@ async def ping(bot, message):
 @bughunter0.on_message(filters.private & ~filters.forwarded)
 async def stickerid(bot, message):   
     if message.sticker :
-       await message.reply(f"*Sticker ID is*  \n `{message.sticker.file_id}` \n \n * Unique ID is * \n\n`{message.sticker.file_unique_id}`")
+       await message.reply(f"*Sticker ID is*  \n `{message.sticker.file_id}` \n \n * Unique ID is * \n\n`{message.sticker.file_unique_id}`", qoute=True)
 
 bughunter0.run()
