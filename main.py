@@ -53,7 +53,7 @@ async def stickerid(bot, message):
 
 @bughunter0.on_message(filters.command(["getsticker"]))
 async def getsticker(bot, message, update, chat):
-    message.reply("Testing functions")
+   message.reply("Testing functions")
    if message.sticker:
         fileid = message.sticker.file_id
         newfile = bot.download_media(fileid)
