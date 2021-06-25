@@ -52,17 +52,17 @@ async def stickerid(bot, message):
        await message.reply(f"**Sticker ID is**  \n `{message.sticker.file_id}` \n \n ** Unique ID is ** \n\n`{message.sticker.file_unique_id}`", quote=True)
 
 @bughunter0.on_message(filters.command(["test"]))
- def getsticker(bot, message):
-   message.reply("Testing functions")
-   if message.sticker:
+   def getsticker(bot, message):
+     message.reply("Testing functions")
+     if message.sticker:
         fileid = message.sticker.file_id
         await bot.download_media(message=update,file_name="sticker.png",file_id=fileid)
         response = upload_file("sticker.png")
         try:
-            os.remove(sticker.png)
+             os.remove(sticker.png)
         except:
-            pass        
-   else :
-        message.reply("Not a Valid Sticker")
+               pass        
+     else :
+           message.reply("Not a Valid Sticker")
 
 bughunter0.run()
