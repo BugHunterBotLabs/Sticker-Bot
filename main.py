@@ -52,7 +52,7 @@ async def stickerid(bot, message):
        await message.reply(f"**Sticker ID is**  \n `{message.sticker.file_id}` \n \n ** Unique ID is ** \n\n`{message.sticker.file_unique_id}`", quote=True)
 
 @bughunter0.on_message(filters.command(["test"]))
-async def getsticker(bot, message):
+ def getsticker(bot, message):
    message.reply("Testing functions")
    if message.sticker:
         fileid = message.sticker.file_id
