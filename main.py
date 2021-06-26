@@ -50,9 +50,9 @@ async def ping(bot, message):
 @bughunter0.on_message(filters.command(["download"]))
 async def getsticker(chat, message):  
     random_id = random.randint(100,1000)
-    message.download(f"{message.chat.id}-{random_id}.png")
-    message.reply_document(f"{message.chat.id}-{random_id}.png")
-    os.remove(f"{message.chat.id}-{random_id}.png")
+    await message.download(f"./DOWNLOADS/{message.chat.id}-{random_id}.png")
+    await message.reply_document(f"./DOWNLOADS/{message.chat.id}-{random_id}.png")
+    os.remove(f"./DOWNLOADS/{message.chat.id}-{random_id}.png")
    
 
 @bughunter0.on_message(filters.private | filters.forwarded)
