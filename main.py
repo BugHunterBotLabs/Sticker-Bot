@@ -48,7 +48,7 @@ async def ping(bot, message):
 
 
 @bughunter0.on_message(filters.command(["download"]))
-async def getsticker(chat, message):  
+async def getsticker(bot, message):  
     random_id = random.randint(100,1000)
     tx = await message.reply_text("Checking Sticker")
     if message.sticker:
