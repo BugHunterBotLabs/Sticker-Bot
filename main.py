@@ -47,13 +47,16 @@ async def ping(bot, message):
     await rm.edit(f"Pong!\n{time_taken_s:.3f} ms")
 
 
-@bughunter0.on_message(filters.command(["download"]) & filters.reply)
+@bughunter0.on_message(filters.command(["download"]))
 async def getsticker(chat, message):  
     random_id = random.randint(100,1000)
-    if message.sticker:
-       await message.download(f"./DOWNLOADS/{message.chat.id}-{random_id}.png")
-       await message.reply_document(f"./DOWNLOADS/{message.chat.id}-{random_id}.png")
-       os.remove(f"./DOWNLOADS/{message.chat.id}-{random_id}.png")
+    tx = await message.reply_text("Checking Sticker")
+  # if message.sticker:
+    await message.download(f"./DOWNLOADS/{message.chat.id}-{random_id}.png")
+    await tx.edit("Downloaded")
+    await message.reply_document(f"./DOWNLOADS/{message.chat.id}-{random_id}.png")
+    await tx.edit("Uploading")
+    os.remove(f"./DOWNLOADS/{message.chat.id}-{random_id}.png")
    
 
 @bughunter0.on_message(filters.private | filters.forwarded)
