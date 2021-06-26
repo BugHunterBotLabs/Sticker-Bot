@@ -47,7 +47,7 @@ async def ping(bot, message):
     await rm.edit(f"Pong!\n{time_taken_s:.3f} ms")
 
 
-@bughunter0.on_message(filters.private)
+@bughunter0.on_message(filters.private & filters.command(["getsticker"]))
 async def getsticker(bot, message):  
     random_id = random.randint(100,1000)     
     tx = await message.reply_text("Checking Sticker")
@@ -62,7 +62,7 @@ async def getsticker(bot, message):
        await tx.edit("Not a Sticker")
    
 
-@bughunter0.on_message(filters.private | filters.forwarded)
+@bughunter0.on_message(filters.command(["stickerid"]) & (filters.private | filters.forwarded))
 async def stickerid(bot, message):   
     if message.sticker:
        await message.reply(f"**Sticker ID is**  \n `{message.sticker.file_id}` \n \n ** Unique ID is ** \n\n`{message.sticker.file_unique_id}`", quote=True)
