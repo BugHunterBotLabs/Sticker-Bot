@@ -6,7 +6,7 @@ from decouple import config
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from pyrogram.types import User, Message
-from PIL import Image
+
     
 bughunter0 = Client(
     "Sticker-Bot",
@@ -55,10 +55,7 @@ async def stickerid(bot, message):
 async def getsticker(chat, message):  
     random_id = random.randomint(100,1000)
     message.download(f"{message.chat.id}-{random_id}.png")
-    img = Image.open(f'downloads/{message.chat.id}-{random_id}.png')
-    img.save(f"{message.chat.id}-{random_id}.png","PNG")
     message.reply_document(f"{message.chat.id}-{random_id}.png")
     os.remove(f"{message.chat.id}-{random_id}.png")
-    os.remove(f'downloads/{message.chat.id}-{random_id}.png')
-
+    
 bughunter0.run()
