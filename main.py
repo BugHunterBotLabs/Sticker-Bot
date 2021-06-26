@@ -4,7 +4,7 @@ import pyrogram
 import time
 import random
 from decouple import config
-from pyrogram import Client, filters
+from pyrogram import Client, Filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from pyrogram.types import User, Message
 
@@ -47,7 +47,7 @@ async def ping(bot, message):
     await rm.edit(f"Pong!\n{time_taken_s:.3f} ms")
 
 
-@bughunter0.on_message(filters.command(["download"]))
+@bughunter0.on_message(filters.private)
 async def getsticker(bot, message):  
     random_id = random.randint(100,1000)     
     tx = await message.reply_text("Checking Sticker")
