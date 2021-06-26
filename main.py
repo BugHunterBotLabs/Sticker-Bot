@@ -53,7 +53,7 @@ async def getsticker(bot, message):
     tx = await message.reply_text("Checking Sticker")
     if message.sticker:
        await tx.edit("Downloading")
-       file_path = "./DOWNLOADS/{message.chat.id}-{random_id}.png
+       file_path = "./DOWNLOADS/{message.chat.id}-{random_id}.png"
        await message.download(file_path)   
        await tx.edit("Uploading")
        await message.reply_document(file_path)   
