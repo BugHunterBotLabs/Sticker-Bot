@@ -50,7 +50,7 @@ async def ping(bot, message):
 @bughunter0.on_message(filters.private & filters.command(["getsticker"]))
 async def getsticker(bot, message):  
     random_id = random.randint(100,1000)     
-    tx = await message.reply_text("Checking Sticker")
+ #   tx = await message.reply_text("Checking Sticker")
     if message.sticker:
        await tx.edit("Downloading")
        file_path = "./DOWNLOADS/{message.chat.id}-{random_id}.png"
