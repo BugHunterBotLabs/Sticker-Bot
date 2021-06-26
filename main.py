@@ -49,12 +49,11 @@ async def ping(bot, message):
 
 @bughunter0.on_message(filters.command(["download"]))
 async def getsticker(bot, message):  
-    random_id = random.randint(100,1000)  
-    message=update 
+    random_id = random.randint(100,1000)     
     tx = await message.reply_text("Checking Sticker")
     if message.sticker:
        await tx.edit("Downloading")
-       file_path = await message.download(f"./DOWNLOADS/{message.chat.id}-{random_id}.png")   
+       file_path = await message.reply_to_message.download(f"./DOWNLOADS/{message.chat.id}-{random_id}.png")   
        await tx.edit("Uploading")
        await message.reply_document(file_path)   
        os.remove(file_path)
