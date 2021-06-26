@@ -51,11 +51,14 @@ async def ping(bot, message):
 async def getsticker(chat, message):  
     random_id = random.randint(100,1000)
     tx = await message.reply_text("Checking Sticker")
-    await tx.edit("Downloading")
-    file_path = await message.download(f"./DOWNLOADS/{message.chat.id}-{random_id}.png")   
-    await tx.edit("Uploading")
-    await message.reply_document(file_path)   
-    os.remove(file_path)
+    if message.sticker:
+       await tx.edit("Downloading")
+       file_path = await message.download(f"./DOWNLOADS/{message.chat.id}-{random_id}.png")   
+       await tx.edit("Uploading")
+       await message.reply_document(file_path)   
+       os.remove(file_path)
+    else :
+       await tx.edit("Not a Sticker")
    
 
 @bughunter0.on_message(filters.private | filters.forwarded)
