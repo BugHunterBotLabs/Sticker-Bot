@@ -56,10 +56,11 @@ async def getsticker(bot, message):
        file_path = f"./DOWNLOADS/{message.chat.id}-{random_id}.png"
        await message.reply_to_message.download(file_path)   
        await tx.edit("Uploading..")
-       await message.reply_document(file_path)   
+       await message.reply_document(file_path)
+       await tx.message.delete()   
        os.remove(file_path)
     else : 
-       Message.reply_text("Reply to a Sticker File!")
+       await tx.edit("Reply to a Sticker File!")
 
 @bughunter0.on_message(filters.command(["stickerid"]) & (filters.private | filters.forwarded) & filters.sticker)
 async def stickerid(bot, message):   
