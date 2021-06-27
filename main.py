@@ -60,12 +60,11 @@ async def getsticker(bot, message):
           if message.reply_to_message.sticker.is_animated:
              try :
                    await tx.edit("Downloading...")
-                   file_path = f"./DOWNLOADS/{message.chat.id}/tgs-{random_id}.tgs"   
+                   file_path = f"./DOWNLOADS/{message.chat.id}/tgs-{random_id}.tgs"+f".zip"   
                    await message.reply_to_message.download(file_path)  
                    await tx.edit("Downloaded") 
-                   await tx.edit("Uploading..")
-                   zip_path=file_path+f".zip"
-                   await message.reply_document(document=zip_path,caption=f"©@BugHunterBots")
+                   await tx.edit("Uploading...")
+                   await message.reply_document(document=file_path,caption=f"©@BugHunterBots")
                    await tx.delete()   
                    os.remove(file_path)
                    os.remove(zip_path)
