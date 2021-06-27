@@ -50,39 +50,40 @@ async def ping(bot, message):
 
 @bughunter0.on_message(filters.private & filters.command(["getsticker"]))
 async def getsticker(bot, message):  
-    random_id = random.randint(100,1000)         
-    tx = await message.reply_text("Checking Sticker")
-    if message.reply_to_message is None: 
-       tx =  await tx.edit("Reply to a Sticker File!")       
-    else : 
-       if message.reply_to_message.sticker.is_animated is False:        
-          try : 
-                await tx.edit("Downloading...")
-                file_path = f"./DOWNLOADS/{message.chat.id}/png-{random_id}.png"
-                await message.reply_to_message.download(file_path)   
-                await tx.edit("Downloaded")
-                await tx.edit("Uploading...")
-                await message.reply_document(document=file_path,caption=f"©@BugHunterBots")
-                await tx.delete()   
-                os.remove(file_path)
-          except Exception as error:
-             print(error)
+    random_id = random.randint(100,1000)   
+    if True:      
+            tx = await message.reply_text("Checking Sticker")
+     if message.reply_to_message is None: 
+            tx =  await tx.edit("Reply to a Sticker File!")       
+     else : 
+           if message.reply_to_message.sticker.is_animated is False:        
+              try : 
+                   await tx.edit("Downloading...")
+                   file_path = f"./DOWNLOADS/{message.chat.id}/png-{random_id}.png"
+                   await message.reply_to_message.download(file_path)   
+                   await tx.edit("Downloaded")
+                   await tx.edit("Uploading...")
+                   await message.reply_document(document=file_path,caption=f"©@BugHunterBots")
+                   await tx.delete()   
+                   os.remove(file_path)
+              except Exception as error:
+                   print(error)
 
-       elif message.reply_to_message.sticker.is_animated :
-         try :
-               await tx.edit("Downloading...")
-               file_path = f"./DOWNLOADS/{message.chat.id}/tgs-{random_id}.tgs/.zip"
-               await message.reply_to_message.download(file_path)  
-               await message.edit("Downloaded") 
-               await tx.edit("Uploading..")
-               await message.reply_document(document=file_path,caption=f"©@BugHunterBots")
-               await tx.delete()   
-               os.remove(file_path)
-         except Exception as error:
-             print(error)
+           elif message.reply_to_message.sticker.is_animated:
+              try :
+                   await tx.edit("Downloading...")
+                   file_path = f"./DOWNLOADS/{message.chat.id}/tgs-{random_id}.tgs"
+                   await message.reply_to_message.download(file_path)  
+                   await message.edit("Downloaded") 
+                   await tx.edit("Uploading..")
+                   await message.reply_document(document=file_path+f".zip",caption=f"©@BugHunterBots")
+                   await tx.delete()   
+                   os.remove(file_path)
+              except Exception as error:
+                   print(error)
 
-       else:
-            tx.edit("Not a Sticker file !!")
+     else:
+          tx.edit("Not a Sticker file !!")
 
 @bughunter0.on_message(filters.command(["stickerid"]))
 async def stickerid(bot, message):   
