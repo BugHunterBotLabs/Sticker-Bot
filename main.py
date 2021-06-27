@@ -55,7 +55,7 @@ async def getsticker(bot, message):
     if message.reply_to_message is None: 
        tx =  await tx.edit("Reply to a Sticker File!")       
     else : 
-       if sticker.is_animated is False:        
+       if message.reply_to_message.sticker.is_animated is False:        
           try : 
                await tx.edit("Downloading..")
                file_path = f"./DOWNLOADS/{message.chat.id}-{random_id}.png"
@@ -81,7 +81,7 @@ async def getsticker(bot, message):
 
 @bughunter0.on_message(~filters.command(["stickerid"]) & (filters.private | filters.forwarded) & filters.sticker)
 async def stickerid(bot, message):   
-    if message.reply_to_message.sticker:
+    if reply_to_message.sticker:
        await message.reply(f"**Sticker ID is**  \n `{message.sticker.file_id}` \n \n ** Unique ID is ** \n\n`{message.sticker.file_unique_id}`", quote=True)
 
  
