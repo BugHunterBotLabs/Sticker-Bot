@@ -1,4 +1,5 @@
-import os
+import os 
+from os import error
 import logging
 import pyrogram
 import time
@@ -54,14 +55,29 @@ async def getsticker(bot, message):
     if message.reply_to_message is None: 
        tx =  await tx.edit("Reply to a Sticker File!")       
     else : 
-       await tx.edit("Downloading..")
-       file_path = f"./DOWNLOADS/{message.chat.id}-{random_id}.png"
-       await message.reply_to_message.download(file_path)   
-       await tx.edit("Uploading..")
-       await message.reply_document(file_path)
-       await tx.delete()   
-       os.remove(file_path)
+       if str(message.sticker.file_name) == "sticker.webp":        
+          try : 
+               await tx.edit("Downloading..")
+               file_path = f"./DOWNLOADS/{message.chat.id}-{random_id}.png"
+               await message.reply_to_message.download(file_path)   
+               await tx.edit("Uploading..")
+               await message.reply_document(file_path)
+               await tx.delete()   
+               os.remove(file_path)
+          except Exception as error:
+            print(error)
 
+       elif str(message.sticker.file_name) == "AnimatedSticker.tgs":
+         try :
+              await tx.edit("Downloading..")
+              file_path = f"./DOWNLOADS/{message.chat.id}-{random_id}.gif"
+              await message.reply_to_message.download(file_path)   
+              await tx.edit("Uploading..")
+              await message.reply_document(file_path)
+              await tx.delete()   
+              os.remove(file_path)
+         except Exception as error:
+            print(error)
 
 @bughunter0.on_message(~filters.command(["stickerid"]) & (filters.private | filters.forwarded) & filters.sticker)
 async def stickerid(bot, message):   
