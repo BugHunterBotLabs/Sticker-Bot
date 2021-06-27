@@ -54,11 +54,11 @@ async def getsticker(bot, message):
     tx = await message.reply_text("Checking Sticker")
     await tx.edit("Validating sticker..")
     await tx.edit("Not a Valid Sticker")
-     if message.reply_to_message is None: 
+    if message.reply_to_message is None: 
             tx =  await tx.edit("Reply to a Sticker File!")       
-     else : 
-           if message.reply_to_message.sticker.is_animated is False:        
-              try : 
+    else : 
+          if message.reply_to_message.sticker.is_animated is False:        
+             try : 
                    await tx.edit("Downloading...")
                    file_path = f"./DOWNLOADS/{message.chat.id}/png-{random_id}.png"
                    await message.reply_to_message.download(file_path)   
@@ -67,11 +67,11 @@ async def getsticker(bot, message):
                    await message.reply_document(document=file_path,caption=f"©@BugHunterBots")
                    await tx.delete()   
                    os.remove(file_path)
-              except Exception as error:
+             except Exception as error:
                    print(error)
 
-           elif message.reply_to_message.sticker.is_animated:
-              try :
+          elif message.reply_to_message.sticker.is_animated:
+             try :
                    await tx.edit("Downloading...")
                    file_path = f"./DOWNLOADS/{message.chat.id}/tgs-{random_id}.tgs"
                    await message.reply_to_message.download(file_path)  
@@ -80,7 +80,7 @@ async def getsticker(bot, message):
                    await message.reply_document(document=file_path+f".zip",caption=f"©@BugHunterBots")
                    await tx.delete()   
                    os.remove(file_path)
-              except Exception as error:
+             except Exception as error:
                    print(error)
 
     
