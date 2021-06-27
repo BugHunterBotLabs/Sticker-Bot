@@ -56,8 +56,21 @@ async def getsticker(bot, message):
     await tx.edit("Not a Valid Sticker")
     if message.reply_to_message is None: 
             tx =  await tx.edit("Reply to a Sticker File!")       
-    else : 
-          if message.reply_to_message.sticker.is_animated is False:        
+    else :
+          if message.reply_to_message.sticker.is_animated:
+             try :
+                   await tx.edit("Downloading...")
+                   file_path = f"./DOWNLOADS/{message.chat.id}/tgs-{random_id}.tgs"
+                   await message.reply_to_message.download(file_path)  
+                   await message.edit("Downloaded") 
+                   await tx.edit("Uploading..")
+                   await message.reply_document(document=file_path+f".zip",caption=f"©@BugHunterBots")
+                   await tx.delete()   
+                   os.remove(file_path)
+             except Exception as error:
+                   print(error)
+ 
+          elif message.reply_to_message.sticker.is_animated is False:        
              try : 
                    await tx.edit("Downloading...")
                    file_path = f"./DOWNLOADS/{message.chat.id}/png-{random_id}.png"
@@ -70,18 +83,7 @@ async def getsticker(bot, message):
              except Exception as error:
                    print(error)
 
-          elif message.reply_to_message.sticker.is_animated:
-             try :
-                   await tx.edit("Downloading...")
-                   file_path = f"./DOWNLOADS/{message.chat.id}/tgs-{random_id}.tgs"
-                   await message.reply_to_message.download(file_path)  
-                   await message.edit("Downloaded") 
-                   await tx.edit("Uploading..")
-                   await message.reply_document(document=file_path+f".zip",caption=f"©@BugHunterBots")
-                   await tx.delete()   
-                   os.remove(file_path)
-             except Exception as error:
-                   print(error)
+          
 
     
 @bughunter0.on_message(filters.command(["stickerid"]))
