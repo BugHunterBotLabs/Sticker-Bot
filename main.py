@@ -67,7 +67,7 @@ async def getsticker(bot, message):
           except Exception as error:
             print(error)
 
-       elif sticker.is_animated :
+       elif message.reply_to_message.sticker.is_animated :
          try :
               await tx.edit("Downloading..")
               file_path = f"./DOWNLOADS/{message.chat.id}-{random_id}.gif"
@@ -79,9 +79,9 @@ async def getsticker(bot, message):
          except Exception as error:
             print(error)
 
-@bughunter0.on_message(~filters.command(["stickerid"]) & (filters.private | filters.forwarded) & filters.sticker)
+@bughunter0.on_message(filters.command(["stickerid"]) & (filters.private | filters.forwarded) & filters.sticker)
 async def stickerid(bot, message):   
-    if reply_to_message.sticker:
+    if message.reply_to_message.sticker:
        await message.reply(f"**Sticker ID is**  \n `{message.sticker.file_id}` \n \n ** Unique ID is ** \n\n`{message.sticker.file_unique_id}`", quote=True)
 
  
