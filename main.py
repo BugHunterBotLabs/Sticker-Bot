@@ -70,14 +70,15 @@ async def getsticker(bot, message):
        elif message.reply_to_message.sticker.is_animated :
          try :
               await tx.edit("Downloading..")
-              file_path = f"./DOWNLOADS/{message.chat.id}-{random_id}.gif"
+              file_path = f"./DOWNLOADS/{message.chat.id}-{random_id}.tgs"
               await message.reply_to_message.download(file_path)   
               await tx.edit("Uploading..")
-              await message.reply_animation(file_path)
+              await message.reply_document(file_path)
               await tx.delete()   
               os.remove(file_path)
          except Exception as error:
             print(error)
+     await tx.delete
 
 @bughunter0.on_message(filters.command(["stickerid"]))
 async def stickerid(bot, message):   
