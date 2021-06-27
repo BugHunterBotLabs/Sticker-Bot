@@ -70,7 +70,7 @@ async def getsticker(bot, message):
        elif message.reply_to_message.sticker.is_animated :
          try :
                await tx.edit("Downloading..")
-               file_path = f"./DOWNLOADS/{message.chat.id}-{random_id}.tgs"
+               file_path = f"./DOWNLOADS/{message.chat.id}-{random_id}.tgs.zip"
                await message.reply_to_message.download(file_path)   
                await tx.edit("Uploading..")
                await message.reply_document(file_path)
