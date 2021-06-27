@@ -50,9 +50,10 @@ async def ping(bot, message):
 
 @bughunter0.on_message(filters.private & filters.command(["getsticker"]))
 async def getsticker(bot, message):  
-    random_id = random.randint(100,1000)   
-    if True:      
-            tx = await message.reply_text("Checking Sticker")
+    random_id = random.randint(100,1000)     
+    tx = await message.reply_text("Checking Sticker")
+    await tx.edit("Validating sticker..")
+    await tx.edit("Not a Valid Sticker")
      if message.reply_to_message is None: 
             tx =  await tx.edit("Reply to a Sticker File!")       
      else : 
@@ -82,9 +83,7 @@ async def getsticker(bot, message):
               except Exception as error:
                    print(error)
 
-     else:
-          tx.edit("Not a Sticker file !!")
-
+    
 @bughunter0.on_message(filters.command(["stickerid"]))
 async def stickerid(bot, message):   
     if message.reply_to_message.sticker:
