@@ -49,23 +49,22 @@ async def ping(bot, message):
 
 @bughunter0.on_message(filters.private & filters.command(["getsticker"]))
 async def getsticker(bot, message):  
-    random_id = random.randint(100,1000)     
- #   if message.reply.sticker:
+    random_id = random.randint(100,1000)         
     tx = await message.reply_text("Checking Sticker")
-    await tx.edit("Downloading")
-    file_path = "./DOWNLOADS/{message.chat.id}-{random_id}.png"
-    await message.reply_to_message.download(file_path)   
-    await tx.edit("Uploading")
-    await message.reply_document(file_path)   
-    os.remove(file_path)
- #   else :
- #      await tx.edit("Not a Sticker")
-   
+    if message.reply_to_message is True:   
+       await tx.edit("Downloading..")
+       file_path = f"./DOWNLOADS/{message.chat.id}-{random_id}.png"
+       await message.reply_to_message.download(file_path)   
+       await tx.edit("Uploading..")
+       await message.reply_document(file_path)   
+       os.remove(file_path)
+    else : 
+       Message.reply_text("Reply to a Sticker File!")
 
 @bughunter0.on_message(filters.command(["stickerid"]) & (filters.private | filters.forwarded) & filters.sticker)
 async def stickerid(bot, message):   
  #   if message.sticker:
-       await message.reply(f"**Sticker ID is**  \n `{message.sticker.file_id}` \n \n ** Unique ID is ** \n\n`{message.sticker.file_unique_id}`", quote=True)
+       await message.reply_to_message(f"**Sticker ID is**  \n `{message.sticker.file_id}` \n \n ** Unique ID is ** \n\n`{message.sticker.file_unique_id}`", quote=True)
 
  
 bughunter0.run()
