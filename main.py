@@ -55,7 +55,7 @@ async def getsticker(bot, message):
     if message.reply_to_message is None: 
        tx =  await tx.edit("Reply to a Sticker File!")       
     else : 
-       if message.sticker.is_animated is False:        
+       if sticker.is_animated is False:        
           try : 
                await tx.edit("Downloading..")
                file_path = f"./DOWNLOADS/{message.chat.id}-{random_id}.png"
@@ -67,7 +67,7 @@ async def getsticker(bot, message):
           except Exception as error:
             print(error)
 
-       elif message.sticker.is_animated :
+       elif sticker.is_animated :
          try :
               await tx.edit("Downloading..")
               file_path = f"./DOWNLOADS/{message.chat.id}-{random_id}.gif"
