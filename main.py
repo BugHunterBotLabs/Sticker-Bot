@@ -78,11 +78,11 @@ async def getsticker(bot, message):
                await message.reply_document(document=file_path,caption=f"©@BugHunterBots")
                await tx.delete()   
                os.remove(file_path)
-               os.remove(zip_path)
          except Exception as error:
              print(error)
 
-       elif await tx.edit("Not a Sticker file !!")
+       else:
+            tx.edit("Not a Sticker file !!")
 
 @bughunter0.on_message(filters.command(["stickerid"]))
 async def stickerid(bot, message):   
