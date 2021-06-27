@@ -71,7 +71,7 @@ async def getsticker(bot, message):
          try :
                await tx.edit("Downloading..")
                file_path = f"./DOWNLOADS/{message.chat.id}-{random_id}.tgs"
-               zip_path = f"./DOWNLOADS/ZIP/{file_path}.zip"
+               zip_path = f"{file_path}.zip"
                await message.reply_to_message.download(file_path)   
                await tx.edit("Uploading..")
                await message.reply_document(zip_path)
