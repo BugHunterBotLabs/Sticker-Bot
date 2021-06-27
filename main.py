@@ -59,11 +59,11 @@ async def getsticker(bot, message):
        await message.reply_to_message.download(file_path)   
        await tx.edit("Uploading..")
        await message.reply_document(file_path)
-       await tx.message.delete()   
+       await tx.delete()   
        os.remove(file_path)
 
 
-@bughunter0.on_message(filters.command(["stickerid"]) & (filters.private | filters.forwarded) & filters.sticker)
+@bughunter0.on_message(~filters.command(["stickerid"]) & (filters.private | filters.forwarded) & filters.sticker)
 async def stickerid(bot, message):   
  #   if message.sticker:
        await message.reply_to_message(f"**Sticker ID is**  \n `{message.sticker.file_id}` \n \n ** Unique ID is ** \n\n`{message.sticker.file_unique_id}`", quote=True)
