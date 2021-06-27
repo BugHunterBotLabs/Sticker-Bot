@@ -63,7 +63,7 @@ async def getsticker(bot, message):
                    file_path = f"./DOWNLOADS/{message.chat.id}/tgs-{random_id}.tgs" 
                    await message.reply_to_message.download(file_path)  
                    await tx.edit("Downloaded") 
-                   zip_path= file_path+f".zip"
+                   zip_path= f"./DOWNLOADS/{message.chat.id}/tgs-{random_id}.zip"
                    await tx.edit("Uploading...")
                    await message.reply_document(document=zip_path,caption=f"©@BugHunterBots")
                    await tx.delete()   
