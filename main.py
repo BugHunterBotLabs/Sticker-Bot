@@ -70,12 +70,14 @@ async def getsticker(bot, message):
        elif message.reply_to_message.sticker.is_animated :
          try :
                await tx.edit("Downloading..")
-               file_path = f"(./DOWNLOADS/TGS/{message.chat.id}-{random_id}.tgs).zip"
+               file_path = f"./DOWNLOADS/{message.chat.id}-{random_id}.tgs"
+               zip_path = f"./DOWNLOADS/ZIP/{file_path}.zip
                await message.reply_to_message.download(file_path)   
                await tx.edit("Uploading..")
-               await message.reply_document(file_path)
+               await message.reply_document(zip_path)
                await tx.delete()   
                os.remove(file_path)
+               os.remove(zip_path)
          except Exception as error:
              print(error)
      
