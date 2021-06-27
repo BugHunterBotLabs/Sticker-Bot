@@ -4,7 +4,8 @@ import logging
 import pyrogram
 import time
 import random
-import gzip
+import shutil
+from shutil import make_archive
 from decouple import config
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
@@ -64,7 +65,7 @@ async def getsticker(bot, message):
                    file_path = f"./DOWNLOADS/{message.chat.id}/tgs-{random_id}.tgs" 
                    await message.reply_to_message.download(file_path)  
                    await tx.edit("Downloaded") 
-                   zip_path= gzip.compress(file_path)
+                   zip_path= ZipFile.write(file_path)
                    await tx.edit("Uploading...")
                    await message.reply_document(document=zip_path,caption=f"©@BugHunterBots")
                    await tx.delete()   
