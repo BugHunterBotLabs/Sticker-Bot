@@ -3,7 +3,7 @@
 # 2021
 # Copyright - https://en.m.wikipedia.org/wiki/Fair_use
 
-import os 
+import os , glob
 from os import error
 import logging
 import pyrogram
@@ -33,7 +33,7 @@ JOIN_BUTTON = InlineKeyboardMarkup(
     )
 
 DOWNLOAD_LOCATION = os.environ.get("DOWNLOAD_LOCATION", "./DOWNLOADS/")
-file_path = DOWNLOAD_LOCATION # For clear cache purpose
+file_path = DOWNLOAD_LOCATION + f"{message.chat.id}
 
 @bughunter0.on_message(filters.command(["start"]))
 async def start(bot, update):
@@ -66,10 +66,10 @@ async def getsticker(bot, message):
           if message.reply_to_message.sticker.is_animated:
              try :
                    tx = await message.reply_text("Downloading...")
-                   file_path = DOWNLOAD_LOCATION + f"{message.chat.id}.tgs"
+                   file_path = DOWNLOAD_LOCATION + ".tgs"
                    await message.reply_to_message.download(file_path)  
                    await tx.edit("Downloaded") 
-                #   zip_path= ZipFile.write("./DOWNLOADS/{message.chat.id}/tgs-{random_id}.tgs")
+                #   zip_path= ZipFile.write("")
                    await tx.edit("Uploading...")
                    await message.reply_document(document=file_path,caption=f"©@BugHunterBots")
                    await tx.delete()   
@@ -81,7 +81,7 @@ async def getsticker(bot, message):
           elif message.reply_to_message.sticker.is_animated is False:        
              try : 
                    tx = await message.reply_text("Downloading...")
-                   file_path = DOWNLOAD_LOCATION + f"{message.chat.id}.png"
+                   file_path = DOWNLOAD_LOCATION + ".png"
                    await message.reply_to_message.download(file_path)   
                    await tx.edit("Downloaded")
                    await tx.edit("Uploading...")
@@ -96,7 +96,10 @@ async def clearcache(bot, message):
     # Found some Files showing error while Uploading, So a method to Remove it !!  
     txt = await message.reply_text("Checking Cache")
     await txt.edit("Clearing cache")
-    os.remove(file_path)  
+    dir = DOWNLOAD_LOCATION
+    filelist = glob.glob(os.path.join(dir, "*"))
+    for f in filelist:
+           os.remove(f)  
     await tx.edit("Cleared Cache")
     await txt.delete()
     
