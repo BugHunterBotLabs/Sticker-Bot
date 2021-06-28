@@ -100,7 +100,7 @@ async def clearcache(bot, message):
     filelist = glob.glob(os.path.join(dir, "*"))
     for f in filelist:
            os.remove(f)  
-    await tx.edit("Cleared Cache")
+    await txt.edit("Cleared Cache")
     await txt.delete()
     
 @bughunter0.on_message(filters.command(["stickerid"]))
