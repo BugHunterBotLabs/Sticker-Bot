@@ -59,7 +59,7 @@ async def getsticker(bot, message):
     else :
           if message.reply_to_message.sticker.is_animated:
              try :
-                   await tx = await message.reply_text("Downloading...")
+                   tx = await message.reply_text("Downloading...")
                    file_path = f"./DOWNLOADS/{message.chat.id}/tgs-{random_id}.tgs" 
                    await message.reply_to_message.download(file_path)  
                    await tx.edit("Downloaded") 
@@ -74,7 +74,7 @@ async def getsticker(bot, message):
  
           elif message.reply_to_message.sticker.is_animated is False:        
              try : 
-                   await tx = message.reply_text("Downloading...")
+                   tx = await message.reply_text("Downloading...")
                    file_path = f"./DOWNLOADS/{message.chat.id}/png-{random_id}.png"
                    await message.reply_to_message.download(file_path)   
                    await tx.edit("Downloaded")
