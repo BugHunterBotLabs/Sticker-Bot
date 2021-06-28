@@ -4,13 +4,10 @@ import logging
 import pyrogram
 import time
 import random
-import shutil
-from zipfile import ZipFile
-from shutil import make_archive
 from decouple import config
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
-from pyrogram.types import User, Message
+from pyrogram.types import User, Message, Sticker, Document
 
     
 bughunter0 = Client(
@@ -56,13 +53,13 @@ async def getsticker(bot, message):
     random_id = random.randint(100,1000)     
     tx = await message.reply_text("Checking Sticker")
     await tx.edit("Validating sticker..")
-    await tx.edit("Not a Valid Sticker")
+    await tx.delete()
     if message.reply_to_message is None: 
             tx =  await tx.edit("Reply to a Sticker File!")       
     else :
           if message.reply_to_message.sticker.is_animated:
              try :
-                   await tx.edit("Downloading...")
+                   await tx = await message.reply_text("Downloading...")
                    file_path = f"./DOWNLOADS/{message.chat.id}/tgs-{random_id}.tgs" 
                    await message.reply_to_message.download(file_path)  
                    await tx.edit("Downloaded") 
@@ -77,7 +74,7 @@ async def getsticker(bot, message):
  
           elif message.reply_to_message.sticker.is_animated is False:        
              try : 
-                   await tx.edit("Downloading...")
+                   await tx = message.reply_text("Downloading...")
                    file_path = f"./DOWNLOADS/{message.chat.id}/png-{random_id}.png"
                    await message.reply_to_message.download(file_path)   
                    await tx.edit("Downloaded")
