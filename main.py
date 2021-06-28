@@ -3,7 +3,6 @@ from os import error
 import logging
 import pyrogram
 import time
-import random
 from decouple import config
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
@@ -28,6 +27,9 @@ JOIN_BUTTON = InlineKeyboardMarkup(
         ]]
     )
 
+DOWNLOAD_LOCATION = os.environ.get("DOWNLOAD_LOCATION", "./DOWNLOADS/")
+
+
 @bughunter0.on_message(filters.command(["start"]))
 async def start(bot, update):
     text = START_STRING.format(update.from_user.mention)
@@ -50,7 +52,6 @@ async def ping(bot, message):
 
 @bughunter0.on_message(filters.private & filters.command(["getsticker"]))
 async def getsticker(bot, message):  
-    random_id = random.randint(100,1000)     
     tx = await message.reply_text("Checking Sticker")
     await tx.edit("Validating sticker..")
     await tx.delete()
@@ -60,7 +61,7 @@ async def getsticker(bot, message):
           if message.reply_to_message.sticker.is_animated:
              try :
                    tx = await message.reply_text("Downloading...")
-                   file_path = f"./DOWNLOADS/{message.chat.id}/tgs-{random_id}.tgs" 
+                   file_path = DOWNLOAD_LOCATION + f"{message.chat.id}.png"
                    await message.reply_to_message.download(file_path)  
                    await tx.edit("Downloaded") 
                 #   zip_path= ZipFile.write("./DOWNLOADS/{message.chat.id}/tgs-{random_id}.tgs")
@@ -75,7 +76,7 @@ async def getsticker(bot, message):
           elif message.reply_to_message.sticker.is_animated is False:        
              try : 
                    tx = await message.reply_text("Downloading...")
-                   file_path = f"./DOWNLOADS/{message.chat.id}/png-{random_id}.png"
+                   file_path = DOWNLOAD_LOCATION + f"{message.chat.id}.tgs"
                    await message.reply_to_message.download(file_path)   
                    await tx.edit("Downloaded")
                    await tx.edit("Uploading...")
