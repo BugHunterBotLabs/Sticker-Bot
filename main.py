@@ -97,7 +97,7 @@ async def clearcache(bot, message):
     txt = await message.reply_text("Checking Cache")
     await txt.edit("Clearing cache")
     os.remove(file_path)  
-    await tx.edit(Cleared Cache)
+    await tx.edit("Cleared Cache")
     await txt.delete()
     
 @bughunter0.on_message(filters.command(["stickerid"]))
