@@ -33,7 +33,7 @@ JOIN_BUTTON = InlineKeyboardMarkup(
     )
 
 DOWNLOAD_LOCATION = os.environ.get("DOWNLOAD_LOCATION", "./DOWNLOADS/")
-
+file_path = DOWNLOAD_LOCATION # For clear cache purpose
 
 @bughunter0.on_message(filters.command(["start"]))
 async def start(bot, update):
@@ -91,11 +91,13 @@ async def getsticker(bot, message):
              except Exception as error:
                    print(error)
 
-@bughunter0.on_message(filters.private & filters.command(["steal"]))
-async def clearcache(bot, message):          
+@bughunter0.on_message(filters.private & filters.command(["clearcache"]))
+async def clearcache(bot, message):   
+    # Found some Files showing error while Uploading, So a method to Remove it !!  
     txt = await message.reply_text("Checking Cache")
-    
     await txt.edit("Clearing cache")
+    os.remove(file_path)  
+    await tx.edit(Cleared Cache)
     await txt.delete()
     
 @bughunter0.on_message(filters.command(["stickerid"]))
