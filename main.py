@@ -33,7 +33,7 @@ JOIN_BUTTON = InlineKeyboardMarkup(
     )
 
 DOWNLOAD_LOCATION = os.environ.get("DOWNLOAD_LOCATION", "./DOWNLOADS/")
-file_path = DOWNLOAD_LOCATION + f"{message.chat.id}
+
 
 @bughunter0.on_message(filters.command(["start"]))
 async def start(bot, update):
@@ -66,7 +66,7 @@ async def getsticker(bot, message):
           if message.reply_to_message.sticker.is_animated:
              try :
                    tx = await message.reply_text("Downloading...")
-                   file_path = DOWNLOAD_LOCATION + ".tgs"
+                   file_path = DOWNLOAD_LOCATION + f"{message.chat.id}.tgs"
                    await message.reply_to_message.download(file_path)  
                    await tx.edit("Downloaded") 
                 #   zip_path= ZipFile.write("")
@@ -81,7 +81,7 @@ async def getsticker(bot, message):
           elif message.reply_to_message.sticker.is_animated is False:        
              try : 
                    tx = await message.reply_text("Downloading...")
-                   file_path = DOWNLOAD_LOCATION + ".png"
+                   file_path = DOWNLOAD_LOCATION + f"{message.chat.id}.png"
                    await message.reply_to_message.download(file_path)   
                    await tx.edit("Downloaded")
                    await tx.edit("Uploading...")
