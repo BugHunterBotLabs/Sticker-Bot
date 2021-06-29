@@ -99,8 +99,12 @@ async def clearcache(bot, message):
     dir = DOWNLOAD_LOCATION
     filelist = glob.glob(os.path.join(dir, "*"))
     for f in filelist:
-           os.remove(f)  
-    await txt.edit("Cleared Cache")
+           i =1
+           txt = await txt.edit("Clearing " + i + "File")
+           os.remove(f)
+           i++
+           await txt.edit("Cleared "+ i + "File") 
+    await txt.edit("Successfully Cleared")
     await txt.delete()
     
 @bughunter0.on_message(filters.command(["stickerid"]))
