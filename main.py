@@ -91,7 +91,6 @@ async def getsticker(bot, message):
                    await tx.edit("Uploading...")
                    start = time.time()
                    await message.reply_document(file_path,caption="©@BugHunterBots",progress=progress_for_pyrogram,progress_args=("Trying to upload....",message,start))
-             )
                    await tx.delete()   
                    os.remove(file_path)
              except Exception as error:
