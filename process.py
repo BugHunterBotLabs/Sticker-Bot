@@ -1,5 +1,8 @@
 import math
 import time
+import pyrogram
+from pyrogram.types import User, Message, Sticker, Document
+
 
 FINISHED_PROGRESS_STR = "█"
 UN_FINISHED_PROGRESS_STR = "░"
