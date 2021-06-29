@@ -101,7 +101,7 @@ async def clearcache(bot, message):
     await txt.edit("Clearing cache")
     dir = DOWNLOAD_LOCATION
     filelist = glob.glob(os.path.join(dir, "*"))
-    for f in filelist:
+    for f in filelist :
            i =1
            os.remove(f)
            i=i+1
