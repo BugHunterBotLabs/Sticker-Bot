@@ -69,11 +69,11 @@ async def getsticker(bot, message):
              try :
                    tx = await message.reply_text("Downloading...")
                    file_path = DOWNLOAD_LOCATION + f"{message.chat.id}.tgs"
-                   await message.reply_to_message.download(file_name=file_path,progress=progress_for_pyrogram)  
+                   await message.reply_to_message.download(file_path,progress=progress_for_pyrogram)  
                    await tx.edit("Downloaded") 
                 #   zip_path= ZipFile.write("")
                    await tx.edit("Uploading...")
-                   await message.reply_document(document=file_path,caption="©@BugHunterBots",progress=progress_for_pyrogram)
+                   await message.reply_document(file_path,caption="©@BugHunterBots",progress=progress_for_pyrogram)
                    await tx.delete()   
                    os.remove(file_path)
                 #   os.remove(zip_path)
@@ -84,10 +84,10 @@ async def getsticker(bot, message):
              try : 
                    tx = await message.reply_text("Downloading...")
                    file_path = DOWNLOAD_LOCATION + f"{message.chat.id}.png"
-                   await message.reply_to_message.download(file_name=file_path,progress=progress_for_pyrogram)   
+                   await message.reply_to_message.download(file_path,progress=progress_for_pyrogram)   
                    await tx.edit("Downloaded")
                    await tx.edit("Uploading...")
-                   await message.reply_document(document=file_path,caption="©@BugHunterBots",progress=progress_for_pyrogram)
+                   await message.reply_document(file_path,caption="©@BugHunterBots",progress=progress_for_pyrogram)
                    await tx.delete()   
                    os.remove(file_path)
              except Exception as error:
