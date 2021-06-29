@@ -1,6 +1,8 @@
 import math
 import time
 
+FINISHED_PROGRESS_STR = "█"
+UN_FINISHED_PROGRESS_STR = "░"
 
 async def progress_for_pyrogram(
     current,
@@ -9,7 +11,6 @@ async def progress_for_pyrogram(
     message,
     start
 ):
-
     now = time.time()
     diff = now - start
     if round(diff % 10.00) == 0 or current == total:
@@ -23,12 +24,24 @@ async def progress_for_pyrogram(
         elapsed_time = TimeFormatter(milliseconds=elapsed_time)
         estimated_total_time = TimeFormatter(milliseconds=estimated_total_time)
 
-        progress = "[{0}{1}] \n\n• Progress: {2}%\n".format(
-            ''.join(["▣" for i in range(math.floor(percentage / 10))]),
-            ''.join(["▢" for i in range(10 - math.floor(percentage / 10))]),
+        progress = "[{0}{1}] \nP: {2}%\n".format(
+            ''.join(
+                
+                    FINISHED_PROGRESS_STR for _ in range(
+                        math.floor(percentage / 5)
+                    )
+                
+            ),
+            ''.join(
+                
+                    UN_FINISHED_PROGRESS_STR for _ in range(
+                        20 - math.floor(percentage / 5)
+                    )
+                
+            ),
             round(percentage, 2))
 
-        tmp = progress + "{0} of {1}\n\n️• Speed: {2}/s\n\n• ETA: {3}\n".format(
+        tmp = progress + "{0} of {1}\nSpeed: {2}/s\nETA: {3}\n".format(
             humanbytes(current),
             humanbytes(total),
             humanbytes(speed),
@@ -37,7 +50,7 @@ async def progress_for_pyrogram(
         )
         try:
             await message.edit(
-                text="{}\n {}".format(
+                "{}\n {}".format(
                     ud_type,
                     tmp
                 )
