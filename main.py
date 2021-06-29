@@ -158,10 +158,8 @@ async def progress_for_pyrogram(current,total,message,start):
             estimated_total_time if estimated_total_time != '' else "0 s"
         )
         try:
-            await message.edit("Error"
-                
-                )
-            )
+            await message.edit("Error")
+            
         except:
             pass
 
