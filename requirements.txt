@@ -1,3 +1,5 @@
 pyrogram
 python-decouple
 tgcrypto
+requests
+aiohttp
