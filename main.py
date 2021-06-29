@@ -73,7 +73,7 @@ async def getsticker(bot, message):
                    await tx.edit("Downloaded") 
                 #   zip_path= ZipFile.write("")
                    await tx.edit("Uploading...")
-                   await message.reply_document(document=file_path,caption=f"©@BugHunterBots",progress=progress_for_pyrogram)
+                   await message.reply_document(document=file_path,caption="©@BugHunterBots",progress=progress_for_pyrogram)
                    await tx.delete()   
                    os.remove(file_path)
                 #   os.remove(zip_path)
@@ -87,7 +87,7 @@ async def getsticker(bot, message):
                    await message.reply_to_message.download(file_name=file_path,progress=progress_for_pyrogram)   
                    await tx.edit("Downloaded")
                    await tx.edit("Uploading...")
-                   await message.reply_document(document=file_path,caption=f"©@BugHunterBots",progress=progress_for_pyrogram)
+                   await message.reply_document(document=file_path,caption="©@BugHunterBots",progress=progress_for_pyrogram)
                    await tx.delete()   
                    os.remove(file_path)
              except Exception as error:
@@ -118,13 +118,7 @@ async def stickerid(bot, message):
 
 
 
-async def progress_for_pyrogram(
-    current,
-    total,
-    ud_type,
-    message,
-    start
-):
+async def progress_for_pyrogram(current,total,ud_type,message,start):
     now = time.time()
     diff = now - start
     if round(diff % 10.00) == 0 or current == total:
