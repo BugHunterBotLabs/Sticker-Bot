@@ -102,7 +102,7 @@ async def clearcache(bot, message):
            i =1
            txt = await txt.edit("Clearing " + i + "File")
            os.remove(f)
-           i++
+           i=i+1
            await txt.edit("Cleared "+ i + "File") 
     await txt.edit("Successfully Cleared")
     await txt.delete()
