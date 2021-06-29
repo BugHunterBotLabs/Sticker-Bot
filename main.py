@@ -67,6 +67,7 @@ async def getsticker(bot, message):
     else :
           if message.reply_to_message.sticker.is_animated:
              try :
+                   start = time.time()
                    tx = await message.reply_text("Downloading...")
                    file_path = DOWNLOAD_LOCATION + f"{message.chat.id}.tgs"
                    await message.reply_to_message.download(file_path)  
@@ -118,7 +119,7 @@ async def stickerid(bot, message):
 
 
 
-async def progress_for_pyrogram(current,total,ud_type,message,start):
+async def progress_for_pyrogram(current,total,message,start):
     now = time.time()
     diff = now - start
     if round(diff % 10.00) == 0 or current == total:
@@ -157,10 +158,8 @@ async def progress_for_pyrogram(current,total,ud_type,message,start):
             estimated_total_time if estimated_total_time != '' else "0 s"
         )
         try:
-            await message.edit(
-                "{}\n {}".format(
-                    ud_type,
-                    tmp
+            await message.edit("Error"
+                
                 )
             )
         except:
