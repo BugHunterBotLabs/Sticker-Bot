@@ -68,8 +68,8 @@ async def getsticker(bot, message):
              try :
                    tx = await message.reply_text("Downloading...")
                    file_path = DOWNLOAD_LOCATION + f"{message.chat.id}.tgs"
-                   await message.reply_to_message.download(file_name=file_path,progress=progress_for_pyrogram,progress_args=("Trying to download...."))  
-                #   await tx.edit("Downloaded") 
+                   await message.reply_to_message.download(file_name=file_path,progress=progress_for_pyrogram)  
+                   await tx.edit("Downloaded") 
                 #   zip_path= ZipFile.write("")
                    await tx.edit("Uploading...")
                    await message.reply_document(document=file_path,caption=f"©@BugHunterBots",progress=progress_for_pyrogram)
