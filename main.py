@@ -8,6 +8,7 @@ from os import error
 import logging
 import pyrogram
 import time
+from process import progress_for_pyrogram
 from decouple import config
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
@@ -67,11 +68,11 @@ async def getsticker(bot, message):
              try :
                    tx = await message.reply_text("Downloading...")
                    file_path = DOWNLOAD_LOCATION + f"{message.chat.id}.tgs"
-                   await message.reply_to_message.download(file_path)  
+                   await message.reply_to_message.download(file_path,progress=progress_for_pyrogram)  
                    await tx.edit("Downloaded") 
                 #   zip_path= ZipFile.write("")
                    await tx.edit("Uploading...")
-                   await message.reply_document(document=file_path,caption=f"©@BugHunterBots")
+                   await message.reply_document(document=file_path,caption=f"©@BugHunterBots",progress=progress_for_pyrogram)
                    await tx.delete()   
                    os.remove(file_path)
                 #   os.remove(zip_path)
@@ -82,10 +83,10 @@ async def getsticker(bot, message):
              try : 
                    tx = await message.reply_text("Downloading...")
                    file_path = DOWNLOAD_LOCATION + f"{message.chat.id}.png"
-                   await message.reply_to_message.download(file_path)   
+                   await message.reply_to_message.download(file_path,progress=progress_for_pyrogram)   
                    await tx.edit("Downloaded")
                    await tx.edit("Uploading...")
-                   await message.reply_document(document=file_path,caption=f"©@BugHunterBots")
+                   await message.reply_document(document=file_path,caption=f"©@BugHunterBots",progress=progress_for_pyrogram)
                    await tx.delete()   
                    os.remove(file_path)
              except Exception as error:
