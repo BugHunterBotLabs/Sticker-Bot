@@ -1,5 +1,8 @@
 # Sticker-Bot
-A modular Telegram bot that Return Json for Stcikers
+A modular Telegram bot that can Download sticker(as Png , Tgs) and Return Json for Stcikers
 
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/BugHunterCodeLabs/Sticker-Bot)
+## Give It A star 
+
+# Credits
+Pyrogram
