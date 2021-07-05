@@ -16,6 +16,13 @@ Run python 3 main.py
 
  Frok This repository, ADD heroku deploy button !!
 
+<A href="https://github.com/bughunter0"><img src="https://img.shields.io/github/forks/bughuntercodelabs/sticker-bot?style=for-the-badge" alt=fork> 
+<A href="https://github.com/bughunter0"><img src="https://img.shields.io/github/stars/bughuntercodelabs/sticker-bot?style=for-the-badge" alt=star> 
+
+# Commit Status
+<A href="https://github.com/bughunter0"><img src="https://img.shields.io/github/last-commit/bughuntercodelabs/sticker-bot?style=for-the-badge://" alt=commit> 
+
+
 
 ## Give It A star 
 
