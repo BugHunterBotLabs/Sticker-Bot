@@ -81,7 +81,7 @@ async def getsticker(bot, message):
                    except Exception as error:
                         print(error)
  
-              elif message.reply_to_message.sticker.is_animated is False:        
+               elif message.reply_to_message.sticker.is_animated is False:        
                    try : 
                        tx = await message.reply_text("Downloading...")
                        file_path = DOWNLOAD_LOCATION + f"{message.chat.id}.png"
