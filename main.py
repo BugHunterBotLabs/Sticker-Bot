@@ -56,7 +56,7 @@ async def ping(bot, message):
 
 
 @bughunter0.on_message(filters.private & filters.command(["getsticker"]))
-async def getsticker(bot, message):  
+async def getstickerasfile(bot, message):  
     tx = await message.reply_text("Checking Sticker")
     await tx.edit("Validating sticker..")
     if message.reply_to_message.sticker is False:
@@ -117,5 +117,15 @@ async def stickerid(bot, message):
        await message.reply("Oops !! Not a sticker file")
 
 
-
+@bughunter0.on_message(filters.private & filters.command(["findsticker"]))
+async def findsticker(bot, message):  
+  try:
+      txt = await message.reply_text("Validating Sticker ID")
+      stickerid = message.reply_to_message
+      chat_id = str(message.chat.id)
+      await bot.send_sticker(chat_id,f"{stickerid}")
+      await txt.delete()
+  except Exception as error:
+      txt = await message.reply_text("Not a Valid File ID")
+      
 bughunter0.run()
