@@ -121,7 +121,7 @@ async def stickerid(bot, message):
 async def findsticker(bot, message):  
  # try:
         txt = await message.reply_text("Validating Sticker ID")
-        stickerid = message.reply_to_message
+        stickerid = str(message.reply_to_message.text)
         chat_id = str(message.chat.id)
         await bot.send_sticker(chat_id,f"{stickerid}")
       #  await txt.delete()
