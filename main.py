@@ -92,7 +92,7 @@ async def getstickerasfile(bot, message):
                        await message.reply_document(file_path,caption="©@BugHunterBots")
                        await tx.delete()   
                        os.remove(file_path)
-                  except Exception as error:
+                   except Exception as error:
                        print(error)
 
 @bughunter0.on_message(filters.private & filters.command(["clearcache"]))
