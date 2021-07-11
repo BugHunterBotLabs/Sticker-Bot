@@ -120,11 +120,14 @@ async def stickerid(bot, message):
 @bughunter0.on_message(filters.private & filters.command(["findsticker"]))
 async def findsticker(bot, message):  
   try:
-        txt = await message.reply_text("Validating Sticker ID")
-        stickerid = str(message.reply_to_message.text)
-        chat_id = str(message.chat.id)
-        await txt.delete()
-        await bot.send_sticker(chat_id,f"{stickerid}")
+       if message.reply_to_message: 
+          txt = await message.reply_text("Validating Sticker ID")
+          stickerid = str(message.reply_to_message.text)
+          chat_id = str(message.chat.id)
+          await txt.delete()
+          await bot.send_sticker(chat_id,f"{stickerid}")
+       else:
+          await message.reply_text("Please reply to a ID to get its STICKER.")
   except Exception as error:
         txt = await message.reply_text("Not a Valid File ID")
 
